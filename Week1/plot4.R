@@ -1,4 +1,4 @@
-library(dplyr)
+flibrary(dplyr)
 library(lubridate)
 
 powerdata <- read.table(file="household_power_consumption.txt", sep=";", skip=66637, na.strings="?", stringsAsFactors = FALSE)
@@ -9,6 +9,7 @@ powerdataJan <- filter(powerdataDF, Date %in% c("1/2/2007", "2/2/2007")) #filter
 powerdataJan$date_time = dmy_hms(paste(powerdataJan$Date, powerdataJan$Time))  #combine date & time, create new column
 datadf <- powerdataJan
 
+png("plot4.png")
 par(mfrow=c(2,2))
 
 #top left plot
@@ -28,9 +29,7 @@ legend("topright", c("Submetering1", "Submetering2", "Submetering3"), lty=1, lwd
 #bottom right plot
 with(datadf, plot(date_time, GlobalReactivePower, xlab="datetime", ylab="Global_reactive_power", type="l")) #create plot, date_time against globactipow, type="n" means no points
 
+dev.off()
 
-
-
-
-dev.copy(png, file="plot4.png") #same plot to png file
+#dev.copy(png, file="plot4.png") #same plot to png file
 

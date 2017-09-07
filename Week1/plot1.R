@@ -5,8 +5,10 @@ powerdataDF <- tbl_df(powerdata)
 
 colnames(powerdataDF) <- c("Date", "Time", "GlobalActivePower", "GlobalReactivePower", "Voltage", "GlobalIntensity", "SubMetering1", "SubMetering2", "SubMetering3")
 powerdataJan <- filter(powerdataDF, Date %in% c("1/2/2007", "2/2/2007"))
+
+png(plot1.png)
 plot1 <- hist(powerdataJan$GlobalActivePower, main="Global Active Power", col="red",  lwd=6, xlab="Global Active Power (kilowatts)")
-plot1
+dev.off()
 
 
 
